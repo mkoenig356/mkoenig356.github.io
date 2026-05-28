@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matt Koenig — Senior Operations Leader</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Instrument+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0D0D0D;
+      --bg2:       #141414;
+      --bg3:       #1A1A1A;
+      --rule:      rgba(255,255,255,0.08);
+      --rule-med:  rgba(255,255,255,0.14);
+      --ink:       #F0EDE8;
+      --ink-muted: rgba(240,237,232,0.52);
+      --ink-dim:   rgba(240,237,232,0.3);
+      --accent:    #4D9FFF;
+      --accent-dim: rgba(77,159,255,0.12);
+      --max: 1040px;
+      --display: 'Syne', sans-serif;
+      --body: 'Instrument Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection { background: var(--accent); color: #0D0D0D; }
+
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 2.5rem; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(13,13,13,0.82);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--rule);
+    }
+    nav .wrap {
+      display: flex; justify-content: space-between; align-items: center;
+      height: 56px;
+    }
+    .nav-name {
+      font-family: var(--display); font-size: 0.9rem; font-weight: 700;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      color: var(--ink); text-decoration: none;
+    }
+    .nav-name span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--ink-muted); text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    #hero { padding: 5rem 0 6rem; border-bottom: 1px solid var(--rule); margin-top: 56px; }
+    #hero .wrap { display: grid; grid-template-columns: 1fr 380px; gap: 4rem; align-items: end; }
+
+    .hero-eyebrow {
+      font-family: var(--display);
+      font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.6rem; display: block;
+    }
+    h1 {
+      font-family: var(--display);
+      font-size: clamp(3.4rem, 7vw, 6rem);
+      font-weight: 800; line-height: 0.95;
+      letter-spacing: -0.03em; margin-bottom: 2.2rem;
+    }
+    h1 .line2 { color: var(--ink-muted); }
+
+    .hero-bio {
+      color: var(--ink-muted); font-size: 1rem; line-height: 1.8;
+      max-width: 500px; margin-bottom: 2.4rem;
+    }
+    .hero-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.7rem 1.5rem; font-family: var(--body);
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; text-decoration: none; cursor: pointer;
+      transition: all 0.2s; border-radius: 2px;
+    }
+    .btn-primary {
+      background: var(--accent); color: #0D0D0D; border: none;
+    }
+    .btn-primary:hover { background: #74b8ff; transform: translateY(-1px); }
+    .btn-ghost {
+      background: transparent; color: var(--ink);
+      border: 1px solid var(--rule-med);
+    }
+    .btn-ghost:hover { border-color: var(--ink); background: rgba(255,255,255,0.04); }
+
+    /* hero side panel */
+    .hero-aside {
+      padding: 1.8rem;
+      border: 1px solid var(--rule);
+      background: var(--bg2);
+      border-radius: 4px;
+    }
+    .aside-label {
+      font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--ink-dim); margin-bottom: 1.4rem;
+    }
+    .aside-stats { display: flex; flex-direction: column; gap: 1.2rem; }
+    .aside-stat {
+      display: flex; align-items: baseline; gap: 1rem;
+      padding-bottom: 1.2rem; border-bottom: 1px solid var(--rule);
+    }
+    .aside-stat:last-child { border-bottom: none; padding-bottom: 0; }
+    .aside-num {
+      font-family: var(--display); font-size: 2.4rem; font-weight: 800;
+      color: var(--accent); line-height: 1; flex-shrink: 0;
+    }
+    .aside-desc { font-size: 0.8rem; color: var(--ink-muted); line-height: 1.4; }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 0; border-bottom: 1px solid var(--rule); }
+    section:last-of-type { border-bottom: none; }
+
+    .sec-header { display: flex; align-items: baseline; gap: 1.2rem; margin-bottom: 3.5rem; }
+    .sec-num {
+      font-family: var(--display); font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.14em; color: var(--accent); flex-shrink: 0;
+    }
+    h2 {
+      font-family: var(--display);
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 700; line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .about-text p { color: var(--ink-muted); margin-bottom: 1rem; font-size: 0.97rem; line-height: 1.85; }
+    .about-text p:last-child { margin-bottom: 0; }
+
+    .about-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.8rem; }
+    .about-tag {
+      font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.3rem 0.8rem; border: 1px solid var(--rule-med);
+      color: var(--ink-muted); border-radius: 100px;
+    }
+
+    /* ── EXPERIENCE ── */
+    .exp-list { display: flex; flex-direction: column; }
+    .exp-item {
+      display: grid; grid-template-columns: 200px 1fr; gap: 3rem;
+      padding: 2.8rem 0; border-bottom: 1px solid var(--rule);
+      position: relative;
+    }
+    .exp-item:last-child { border-bottom: none; }
+    .exp-item::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+      background: transparent; transition: background 0.3s;
+    }
+    .exp-item:hover::before { background: var(--accent); }
+
+    .exp-meta { padding-top: 0.1rem; }
+    .exp-period {
+      font-size: 0.72rem; letter-spacing: 0.08em; color: var(--ink-dim);
+      margin-bottom: 0.5rem; font-family: var(--display);
+    }
+    .exp-company {
+      font-family: var(--display); font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent);
+      margin-bottom: 0.2rem;
+    }
+    .exp-role {
+      font-family: var(--display); font-size: 1.15rem; font-weight: 600;
+      line-height: 1.25; color: var(--ink); margin-bottom: 1rem;
+    }
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.8rem; }
+    .exp-bullets li {
+      font-size: 0.88rem; color: var(--ink-muted); line-height: 1.7;
+      display: grid; grid-template-columns: 12px 1fr; gap: 0.7rem;
+    }
+    .exp-bullets li::before {
+      content: ''; display: block; width: 4px; height: 4px; border-radius: 50%;
+      background: var(--accent); margin-top: 0.58em; flex-shrink: 0;
+    }
+    .exp-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.2rem; }
+    .tag {
+      font-size: 0.67rem; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.22rem 0.7rem;
+      background: var(--bg3); color: var(--ink-dim);
+      border: 1px solid var(--rule); border-radius: 2px;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .skill-card {
+      background: var(--bg2); border: 1px solid var(--rule);
+      padding: 1.6rem; border-radius: 4px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .skill-card:hover { border-color: var(--rule-med); background: var(--bg3); }
+    .skill-card h3 {
+      font-family: var(--display); font-size: 0.8rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.1rem;
+    }
+    .skill-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .skill-list li {
+      font-size: 0.85rem; color: var(--ink-muted);
+      display: flex; align-items: flex-start; gap: 0.5rem;
+    }
+    .skill-list li::before {
+      content: ''; display: inline-block; width: 4px; height: 4px; flex-shrink: 0;
+      background: var(--rule-med); border-radius: 50%; margin-top: 0.52em;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-list { display: flex; flex-direction: column; gap: 0; }
+    .edu-item {
+      display: grid; grid-template-columns: 200px 1fr; gap: 3rem;
+      padding: 2rem 0; border-bottom: 1px solid var(--rule);
+    }
+    .edu-item:last-child { border-bottom: none; }
+    .edu-label {
+      font-family: var(--display); font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-dim);
+    }
+    .edu-degree {
+      font-family: var(--display); font-size: 1.1rem; font-weight: 600;
+      color: var(--ink); margin-bottom: 0.3rem;
+    }
+    .edu-school { font-size: 0.85rem; color: var(--ink-muted); }
+
+    /* ── CONTACT ── */
+    #contact { padding: 6rem 0; }
+    .contact-inner {
+      background: var(--bg2); border: 1px solid var(--rule);
+      border-radius: 4px; padding: 4rem;
+      display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: center;
+    }
+    .contact-heading {
+      font-family: var(--display);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 800; line-height: 1; letter-spacing: -0.03em;
+      margin-bottom: 0.8rem;
+    }
+    .contact-heading em { color: var(--accent); font-style: normal; }
+    .contact-sub { color: var(--ink-muted); font-size: 0.95rem; max-width: 400px; }
+    .contact-actions { display: flex; flex-direction: column; gap: 0.7rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 1.8rem 0; border-top: 1px solid var(--rule);
+      display: flex; align-items: center;
+    }
+    footer .wrap { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+    .footer-name {
+      font-family: var(--display); font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-dim);
+    }
+    .footer-copy { font-size: 0.75rem; color: var(--ink-dim); }
+
+    /* ── ANIMATIONS ── */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 800px) {
+      #hero .wrap { grid-template-columns: 1fr; }
+      .hero-aside { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .exp-item, .edu-item { grid-template-columns: 1fr; gap: 0.6rem; }
+      .exp-meta { display: flex; gap: 1rem; align-items: baseline; flex-wrap: wrap; }
+      .contact-inner { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      #banner { height: 220px; }
+    }
+    @media (max-width: 480px) {
+      .skills-grid { grid-template-columns: 1fr; }
+      .wrap { padding: 0 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="wrap">
+      <a class="nav-name" href="#">Matt <span>Koenig</span></a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+
+  <section id="hero">
+    <div class="wrap">
+      <div class="hero-left">
+        <span class="hero-eyebrow reveal">Senior Operations Leader</span>
+        <h1 class="reveal">Matt<br><span class="line2">Koenig.</span></h1>
+        <p class="hero-bio reveal">
+          10+ years converting fragmented customer signals into product roadmap impact at LinkedIn, Nextdoor, Chime, and ezCater — bridging Engineering, Product, and CX to reduce friction and drive measurable ROI through AI-driven VoC programs.
+        </p>
+        <div class="hero-actions reveal">
+          <a class="btn btn-primary" href="mailto:matt@mattjkoenig.com">Get in Touch</a>
+          <a class="btn btn-ghost" href="#experience">View My Work</a>
+        </div>
+      </div>
+      <div class="hero-aside reveal">
+        <p class="aside-label">At a glance</p>
+        <div class="aside-stats">
+          <div class="aside-stat">
+            <span class="aside-num">10+</span>
+            <span class="aside-desc">Years in Product Operations &amp; VoC leadership</span>
+          </div>
+          <div class="aside-stat">
+            <span class="aside-num">700M+</span>
+            <span class="aside-desc">User base scaled with VoC infrastructure at LinkedIn</span>
+          </div>
+          <div class="aside-stat">
+            <span class="aside-num">50%+</span>
+            <span class="aside-desc">Service NPS improvement driven at Chime</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="sec-header reveal">
+        <span class="sec-num">01</span>
+        <h2>Turning signal into strategy</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p>
+            I architect Voice of Customer and Product Operations programs that connect the dots between
+            what customers say and what product teams build. My work lives at the intersection of AI automation,
+            data infrastructure, and cross-functional leadership.
+          </p>
+          <p>
+            From tuning ML Trust &amp; Safety models at LinkedIn to launching AI-orchestrated feedback loops at ezCater,
+            I bring both the technical fluency and operational instincts to make insights actually land with executives
+            and engineering alike.
+          </p>
+          <div class="about-tags">
+            <span class="about-tag">AI &amp; LLM</span>
+            <span class="about-tag">Voice of Customer</span>
+            <span class="about-tag">Product Operations</span>
+            <span class="about-tag">Trust &amp; Safety</span>
+            <span class="about-tag">Data Analytics</span>
+            <span class="about-tag">People Management</span>
+          </div>
+        </div>
+        <div class="reveal" style="color: var(--ink-muted); font-size: 0.94rem; line-height: 1.9;">
+          <p style="margin-bottom:1rem;">
+            My approach is systems-first: I don't just collect feedback — I build the infrastructure, tooling, and cross-functional rituals that turn raw customer noise into prioritized, measurable action.
+          </p>
+          <p>
+            Whether that's instrumenting a Snowflake data pipeline, standing up a Zapier automation that routes hot-state insights to the right Slack channel, or synthesizing a weekly executive brief — I close the loop between signal and decision.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="sec-header reveal">
+        <span class="sec-num">02</span>
+        <h2>Where I've worked</h2>
+      </div>
+      <div class="exp-list">
+
+        <div class="exp-item reveal">
+          <div class="exp-meta">
+            <p class="exp-period">10/2024 — Present</p>
+            <p class="exp-company">ezCater</p>
+          </div>
+          <div class="exp-body">
+            <p class="exp-role">Manager, Program Management — Voice of Customer</p>
+            <ul class="exp-bullets">
+              <li>Architected custom LLM agents (Gemini Gems) and integrated Level AI to convert unstructured customer and market data into real-time strategy briefs for the executive team.</li>
+              <li>Engineered event-driven Slack and Zapier integrations routing hot-state customer insights directly to product squads and support ops, reducing internal response latency.</li>
+              <li>Launched ezCater's first statistically significant relationship survey, establishing repeatable VoC methodology synthesizing CSAT, CES, and AI-driven sentiment to prioritize the product roadmap.</li>
+              <li>Partner with Product, Research, Engineering, and Data to identify and remediate pain points including operational gaps in last-mile food delivery.</li>
+            </ul>
+            <div class="exp-tags">
+              <span class="tag">LLM Agents</span><span class="tag">Level AI</span>
+              <span class="tag">Zapier</span><span class="tag">VoC Strategy</span>
+              <span class="tag">People Management</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-item reveal">
+          <div class="exp-meta">
+            <p class="exp-period">03/2022 — 11/2023</p>
+            <p class="exp-company">Chime</p>
+          </div>
+          <div class="exp-body">
+            <p class="exp-role">Senior Product Operations Manager</p>
+            <ul class="exp-bullets">
+              <li>Led cross-functional CX initiatives in a high-compliance fintech environment, scaling operations with 100% regulatory alignment.</li>
+              <li>Achieved 50%+ improvement in Service NPS by surfacing operational gaps and partnering with Product to deploy resolutions.</li>
+              <li>Built real-time Looker dashboards exposing sentiment, risk, and operational signals to leadership and partner teams.</li>
+            </ul>
+            <div class="exp-tags">
+              <span class="tag">Fintech</span><span class="tag">Looker</span>
+              <span class="tag">NPS</span><span class="tag">Compliance</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-item reveal">
+          <div class="exp-meta">
+            <p class="exp-period">08/2021 — 02/2022</p>
+            <p class="exp-company">Nextdoor</p>
+          </div>
+          <div class="exp-body">
+            <p class="exp-role">Senior Product Operations Manager</p>
+            <ul class="exp-bullets">
+              <li>Architected and launched Nextdoor's inaugural Voice of Member program, transforming fragmented qualitative feedback into high-signal data streams for trust &amp; safety workflows.</li>
+              <li>Served as the Product Ops bridge between Engineering and Policy, driving cross-functional sprints that increased content moderation efficiency and reduced manual appeal volume.</li>
+              <li>Built operational handbooks for content moderation and appeals, establishing repeatable methodologies.</li>
+            </ul>
+            <div class="exp-tags">
+              <span class="tag">Trust &amp; Safety</span><span class="tag">VoC</span>
+              <span class="tag">Content Moderation</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-item reveal">
+          <div class="exp-meta">
+            <p class="exp-period">04/2012 — 08/2021</p>
+            <p class="exp-company">LinkedIn</p>
+          </div>
+          <div class="exp-body">
+            <p class="exp-role">Senior Product Operations Manager — Trust &amp; Safety, Consumer &amp; Premium</p>
+            <ul class="exp-bullets">
+              <li>Partnered with ML Engineering on Trust &amp; Safety models (ATO, abuse, scraping); operational lead for false-positive tuning, driving model efficiency to 95%.</li>
+              <li>Engineered an automated refund workflow within the Help Center, delivering $100K annualized ROI on Premium Subscription refunds.</li>
+              <li>Led ETL and enterprise VoC platform implementation across a 700M+ user base.</li>
+              <li>Reduced endorsement-related complaints by 50%+ and established repeatable NPS methodology for consumer segments.</li>
+              <li>Created the support-to-engineering escalation process, improving triage efficiency; owned Help Center content across all product verticals.</li>
+            </ul>
+            <div class="exp-tags">
+              <span class="tag">ML Operations</span><span class="tag">ETL</span>
+              <span class="tag">Trust &amp; Safety</span><span class="tag">NPS</span>
+              <span class="tag">Automation</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="sec-header reveal">
+        <span class="sec-num">03</span>
+        <h2>What I do well</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card reveal">
+          <h3>AI &amp; Automation</h3>
+          <ul class="skill-list">
+            <li>Custom LLM Agents (Gemini Gems)</li>
+            <li>Level AI</li>
+            <li>Zapier &amp; Agentic Workflows</li>
+            <li>AI Sentiment Analysis</li>
+            <li>ML Model Tuning</li>
+          </ul>
+        </div>
+        <div class="skill-card reveal">
+          <h3>VoC &amp; CX Strategy</h3>
+          <ul class="skill-list">
+            <li>Forsta</li>
+            <li>CSAT, CES &amp; NPS</li>
+            <li>Survey Design</li>
+            <li>Statistical Methodology</li>
+            <li>Experimentation &amp; Measurement</li>
+          </ul>
+        </div>
+        <div class="skill-card reveal">
+          <h3>Data &amp; Analytics</h3>
+          <ul class="skill-list">
+            <li>Looker, Power BI, Tableau</li>
+            <li>Snowflake &amp; SQL</li>
+            <li>ETL Pipelines</li>
+            <li>Aquadata Studio</li>
+            <li>Enterprise Data Platforms</li>
+          </ul>
+        </div>
+        <div class="skill-card reveal">
+          <h3>CRM &amp; Support Platforms</h3>
+          <ul class="skill-list">
+            <li>Zendesk</li>
+            <li>Salesforce</li>
+            <li>Twilio</li>
+            <li>Oracle Service Cloud</li>
+          </ul>
+        </div>
+        <div class="skill-card reveal">
+          <h3>Program &amp; Process</h3>
+          <ul class="skill-list">
+            <li>Jira, Confluence, Asana</li>
+            <li>SOPs &amp; Scalable Playbooks</li>
+            <li>GTM Coordination</li>
+            <li>Portfolio Planning</li>
+          </ul>
+        </div>
+        <div class="skill-card reveal">
+          <h3>Leadership</h3>
+          <ul class="skill-list">
+            <li>Cross-functional Leadership</li>
+            <li>People Management</li>
+            <li>Executive Communication</li>
+            <li>Trust &amp; Safety Operations</li>
+            <li>Operational Risk</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="wrap">
+      <div class="sec-header reveal">
+        <span class="sec-num">04</span>
+        <h2>Where I studied</h2>
+      </div>
+      <div class="edu-list">
+        <div class="edu-item reveal">
+          <span class="edu-label">B.S.</span>
+          <div>
+            <p class="edu-degree">Bachelor of Science, Psychology</p>
+            <p class="edu-school">Grace University — Omaha, NE</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-inner reveal">
+        <div>
+          <h2 class="contact-heading">Contact <em>me.</em></h2>
+          <p class="contact-sub">Open to senior operations, VoC, or product leadership roles. Reach out any time.</p>
+        </div>
+        <div class="contact-actions">
+          <a class="btn btn-primary" href="mailto:matt@mattjkoenig.com">matt@mattjkoenig.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <span class="footer-name">Matt J. Koenig</span>
+      <span class="footer-copy">&copy; <span id="year"></span></span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+
+</body>
+</html>
